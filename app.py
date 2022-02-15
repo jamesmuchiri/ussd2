@@ -60,10 +60,9 @@ def callback():
         variables.response = "CON First, Whats your name?\n"
         variables.responded_A = True
     elif variables.responded_A == True:
-        variables.name = request.values.get("text","default")
-        
-        variables.response=("END Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
-        ).format(variables.name)
+        name = request.values.get("text","default")
+        variables.response=("END Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways." 
+        ).format(name)
 
         variables.responded_A = False
         
