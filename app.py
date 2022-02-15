@@ -60,9 +60,9 @@ def callback():
         variables.response = "CON First, Whats your name?\n"
 
     elif text is not None:
-        name = request.values.get("text","default")
+        text = request.values.get("text","default")
         variables.response=("END Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
-        ).format(variables.name)
+        ).format(text)
 
         variables.responded_A = False
     else:
