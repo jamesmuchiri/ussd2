@@ -1,0 +1,76 @@
+from flask import Flask, request
+import africastalking
+import os
+import variables
+import re
+import maya
+from maya import MayaInterval
+from datetime import datetime
+from dateutil.parser import parse
+
+app = Flask(__name__)
+
+username = "sandbox"
+api_key = "0f54c06969af94baa76c50efbcc1daaecb9b75f254d3388c85edfd9d21ff7ad0"
+africastalking.initialize(username, api_key)
+
+sms = africastalking.SMS
+
+@app.route('/', methods=['POST', 'GET'])
+
+def callback():
+    global response
+    session_id = request.values.get("sessionId", None)
+    service_code = request.values.get("serviceCode", None)
+    phone_number = request.values.get("phoneNumber", None)
+    text = request.values.get("text", "default")
+    phone_number = []
+    phone_number.append(phone_number)
+
+    
+    if text == "":
+        now = maya.MayaDT.from_datetime(datetime.utcnow())
+        Time_zone = now.hour +3
+
+        if 5<= Time_zone <12 :
+            Good_Morning="Good Morning"
+            response =("{}🌅 \nWelcome to Nav Healthcare Services"
+                                "\nHow may i help you"
+                                "\n  1.Book an appointmet"
+                                "\n  2.Diagnosis"
+            ).format(Good_Morning)
+
+        elif  12 <= Time_zone < 17 :
+            Good_Afternoon="Good Afternoon"
+            response =("{}🌅 \nWelcome to Nav Healthcare Services"
+                                "\nHow may i help you"
+                                "\n  1.Book an appointmet"
+                                "\n  2.Diagnosis"
+            ).format(Good_Afternoon)
+        else:
+            Good_Evening="Good Evening"
+            response =("{}🌅 \nWelcome to Nav Healthcare Services"
+                                "\nHow may i help you"
+                                "\n  1.Book an appointmet"
+                                "\n  2.Diagnosis"
+            ).format(Good_Evening)
+
+    elif text == "1":
+        response = "First, Whats your name?\n"
+        variables.responded_A = True
+    elif variables.responded_A == True:
+        name = request.form['Body']
+        if not re.match("^[A-z][A-z|\.|\s]+$",name):
+            response = ("Please give a vallid name _*Example james*_")
+            
+        else:
+            response=("Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
+            ).format(name)
+
+            variables.responded_A = False
+        
+
+    return response
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=os.environ.get("PORT"))
