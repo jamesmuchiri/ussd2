@@ -59,7 +59,7 @@ def callback():
         variables.response = "CON First, Whats your name?\n"
         variables.responded_A = True
     elif variables.responded_A == True:
-        variables.name = request.values.get("text")
+        variables.name = request.values.get("text","default")
         if not re.match("^[A-z][A-z|\.|\s]+$",variables.name):
             variables.response = ("CON Please give a vallid name _*Example james*_")
             
