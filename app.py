@@ -60,14 +60,11 @@ def callback():
         variables.responded_A = True
     elif variables.responded_A == True:
         variables.name = request.values.get("text","default")
-        if not re.match("^[A-z][A-z|\.|\s]+$",variables.name):
-            variables.response = ("CON Please give a vallid name _*Example james*_")
-            
-        else:
-            variables.response=("END Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
-            ).format(variables.name)
+        
+        variables.response=("END Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
+        ).format(variables.name)
 
-            variables.responded_A = False
+        variables.responded_A = False
         
 
     return variables.response
