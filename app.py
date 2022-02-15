@@ -1,3 +1,4 @@
+from tkinter import Variable
 from flask import Flask, request
 import africastalking
 import os
@@ -29,7 +30,7 @@ def callback():
     phone_number.append(phone_number)
 
     
-    if text == "" and variables.responded_A == False:
+    if text == "" and variables.responded_A = Fallse:
         now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = now.hour +3
 
@@ -59,12 +60,14 @@ def callback():
     elif text == "1":
         variables.response = "CON First, Whats your name?\n"
         variables.responded_A = True
-    elif variables.responded_A == True:
-        variables.response=("END Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways." 
-        ).format(text)
+    elif text is not None and variables.responded_A == True:
+        variables.name = request.values.get("text","default")
+        variables.response=("CON Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
+        ).format(variables.name)
 
         variables.responded_A = False
-        
+    else:
+        variables.response = "END Invalid input. Try again."  
 
     return variables.response
 
