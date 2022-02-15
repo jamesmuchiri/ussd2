@@ -1,3 +1,4 @@
+from tkinter import NO
 from flask import Flask, request
 import africastalking
 import os
@@ -57,8 +58,9 @@ def callback():
             ).format(Good_Evening)
 
     elif text == "1":
+        text =  None
         variables.response = "CON First, Whats your name?\n"
-        text = " "
+        
 
     elif text is not None:
         name = request.values.get("text")
