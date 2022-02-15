@@ -1,4 +1,5 @@
 
+from unicodedata import name
 from flask import Flask, request
 import africastalking
 import os
@@ -60,9 +61,9 @@ def callback():
     elif text == "1":
         variables.response = "CON First, Whats your name?\n"
         variables.responded_A = True
-    elif text == "" and variables.responded_A == True:
-        variables.name = request.values.get("text","default")
-        variables.response=("CON Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
+    elif text is not None and variables.responded_A == True:
+        name = request.values.get("text","default")
+        variables.response=("END Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
         ).format(variables.name)
 
         variables.responded_A = False
