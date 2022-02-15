@@ -34,7 +34,7 @@ def callback():
 
         if 5<= Time_zone <12 :
             Good_Morning="Good Morning"
-            variables.response =("{}🌅 \nWelcome to Nav Healthcare Services"
+            variables.response =("CON {}🌅 \nWelcome to Nav Healthcare Services"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
@@ -42,30 +42,30 @@ def callback():
 
         elif  12 <= Time_zone < 17 :
             Good_Afternoon="Good Afternoon"
-            variables.response =("{}🌅 \nWelcome to Nav Healthcare Services"
+            variables.response =("CON {}🌅 \nWelcome to Nav Healthcare Services"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
             ).format(Good_Afternoon)
         else:
             Good_Evening="Good Evening"
-            variables.response =("{}🌅 \nWelcome to Nav Healthcare Services"
+            variables.response =("CON {}🌅 \nWelcome to Nav Healthcare Services"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
             ).format(Good_Evening)
 
     elif text == "1":
-        response = "First, Whats your name?\n"
+        variables.response = "CON First, Whats your name?\n"
         variables.responded_A = True
     elif variables.responded_A == True:
-        name = request.form['Body']
-        if not re.match("^[A-z][A-z|\.|\s]+$",name):
-            variables.response = ("Please give a vallid name _*Example james*_")
+        variables.name = request.form['Body']
+        if not re.match("^[A-z][A-z|\.|\s]+$",variables.name):
+            variables.response = ("CON Please give a vallid name _*Example james*_")
             
         else:
-            variables.response=("Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
-            ).format(name)
+            variables.response=("END Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
+            ).format(variables.name)
 
             variables.responded_A = False
         
