@@ -19,7 +19,6 @@ sms = africastalking.SMS
 @app.route('/', methods=['POST', 'GET'])
 
 def callback():
-    variables.responded_A = False
 
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
@@ -64,7 +63,6 @@ def callback():
         variables.response=("END Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
         ).format(text)
 
-        variables.responded_A = False
     else:
         variables.response = "END Invalid input. Try again."  
 
