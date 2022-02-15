@@ -19,7 +19,7 @@ sms = africastalking.SMS
 @app.route('/', methods=['POST', 'GET'])
 
 def callback():
-    global response
+    
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
     phone_number = request.values.get("phoneNumber", None)
@@ -34,7 +34,7 @@ def callback():
 
         if 5<= Time_zone <12 :
             Good_Morning="Good Morning"
-            response =("{}🌅 \nWelcome to Nav Healthcare Services"
+            variables.response =("{}🌅 \nWelcome to Nav Healthcare Services"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
@@ -42,14 +42,14 @@ def callback():
 
         elif  12 <= Time_zone < 17 :
             Good_Afternoon="Good Afternoon"
-            response =("{}🌅 \nWelcome to Nav Healthcare Services"
+            variables.response =("{}🌅 \nWelcome to Nav Healthcare Services"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
             ).format(Good_Afternoon)
         else:
             Good_Evening="Good Evening"
-            response =("{}🌅 \nWelcome to Nav Healthcare Services"
+            variables.response =("{}🌅 \nWelcome to Nav Healthcare Services"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
@@ -61,16 +61,16 @@ def callback():
     elif variables.responded_A == True:
         name = request.form['Body']
         if not re.match("^[A-z][A-z|\.|\s]+$",name):
-            response = ("Please give a vallid name _*Example james*_")
+            variables.response = ("Please give a vallid name _*Example james*_")
             
         else:
-            response=("Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
+            variables.response=("Hey👋 *{}*\n\nWe are happy to have you 😍.I can help you in the following ways.\n\n   📝 _Registration (if you are a new patient)_ \n   🔒 _Log in (if you are an existing patient)_" 
             ).format(name)
 
             variables.responded_A = False
         
 
-    return response
+    return variables.response
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=os.environ.get("PORT"))
