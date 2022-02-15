@@ -24,6 +24,7 @@ def callback():
     service_code = request.values.get("serviceCode", None)
     phone_number = request.values.get("phoneNumber", None)
     text = request.values.get("text", "default")
+    name = request.values.get("text")
     phone_number = []
     phone_number.append(phone_number)
 
@@ -60,10 +61,8 @@ def callback():
 
     elif text is not None:
         name = request.values.get("text","default")
-        namef = text.replace(text,name)
-
         variables.response=("END Hey👋 {}\n\nWe are happy to have you😍." 
-        ).format(namef)
+        ).format(name)
 
     else:
         variables.response = "END Invalid input. Try again."  
