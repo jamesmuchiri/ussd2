@@ -24,7 +24,7 @@ def callback():
     service_code = request.values.get("serviceCode", None)
     phone_number = request.values.get("phoneNumber", None)
     text = request.values.get("text", "default")
-    name = request.values.get("text")
+    name = " "
     phone_number = []
     phone_number.append(phone_number)
 
@@ -58,9 +58,10 @@ def callback():
 
     elif text == "1":
         variables.response = "CON First, Whats your name?\n"
+        text = " "
 
     elif text is not None:
-        name = request.values.get("text","default")
+        name = request.values.get("text")
         variables.response=("END Hey👋 {}\n\nWe are happy to have you😍." 
         ).format(name)
 
