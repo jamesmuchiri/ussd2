@@ -59,9 +59,11 @@ def callback():
         variables.response = "CON First, Whats your name?\n"
 
     elif text is not None:
-        variables.name = request.values.get(" ")
+        variables.name = request.values.get("text","default")
+        namef = text.replace(text,name)
+
         variables.response=("END Hey👋 {}\n\nWe are happy to have you😍." 
-        ).format(variables.name)
+        ).format(namef)
 
     else:
         variables.response = "END Invalid input. Try again."  
