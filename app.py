@@ -1,3 +1,4 @@
+from unicodedata import name
 from flask import Flask, request
 import africastalking
 import os
@@ -59,8 +60,7 @@ def callback():
         variables.response=("CON Whats your Email, just to check for any corresponding appointments") 
         
     elif text is not None:
-        text = request.values.get("",text)
-        email = text.split("*")[1]
+        email = request.values.get("",text.split("*")[1])
         print(email)
         if email.endswith('@gmail.com') or email.endswith('@outlook.com'):
             variables.response = "CON Whats your name?\n"
@@ -69,8 +69,7 @@ def callback():
             variables.response = ("END Invalid input. Try again")
             
     elif text is not None:
-        text = request.values.get("",text)
-        name = text.split("*")[2]
+        name = text[2]
         print(name)
         if not re.match("^[A-z][A-z|\.|\s]+$",name):
             variables.response = ("END  Invalid input. Try again")
