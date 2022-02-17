@@ -27,8 +27,9 @@ def callback():
     phone_number = []
     phone_number.append(phone_number)
 
-    variables.responded_A == False
-    variables.responded_B == False
+    variables.responded_A = False
+    variables.responded_B = False
+
     if text == "" and variables.responded_A == False:
         now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = now.hour +3
