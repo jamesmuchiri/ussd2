@@ -42,14 +42,14 @@ def callback():
 
         elif  12 <= Time_zone < 17 :
             Good_Afternoon="Good Afternoon"
-            variables.response =("CON {}🌅 \nWelcome to Nav Healthcare Services"
+            variables.response =("CON {}🌄 \nWelcome to Nav Healthcare Services"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
             ).format(Good_Afternoon)
         else:
             Good_Evening="Good Evening"
-            variables.response =("CON {}🌅 \nWelcome to Nav Healthcare Services"
+            variables.response =("CON {}🌙 \nWelcome to Nav Healthcare Services"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
@@ -62,8 +62,15 @@ def callback():
     elif text is not None:
         text = request.values.get("",text)
         name = text.split("*")
-        variables.response=("END Hey👋 {}\nWe are happy to have you😍." 
-        ).format(name[1])
+        namef = name[1]
+
+        if not re.match("^[A-z][A-z|\.|\s]+$",namef):
+            variables.response = ("CON Invalid name"
+                                "\nWhats your name?")
+
+        else:
+            variables.response=("END Hey👋 {}\nWe are happy to have you😍." 
+            ).format(namef)
 
     else:
         variables.response = "END Invalid input. Try again."  
