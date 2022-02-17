@@ -1,4 +1,3 @@
-from pickle import TRUE
 from flask import Flask, request
 import africastalking
 import os
