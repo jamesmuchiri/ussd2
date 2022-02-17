@@ -34,7 +34,7 @@ def callback():
 
         if 5<= Time_zone <12 :
             Good_Morning="Good Morning"
-            variables.response =("CON {}🌅 \nWelcome to '\033[1m'Nav Healthcare'\033[0m'"
+            variables.response =("CON {}🌅 \nWelcome to Nav Healthcare"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
@@ -42,33 +42,44 @@ def callback():
 
         elif  12 <= Time_zone < 17 :
             Good_Afternoon="Good Afternoon"
-            variables.response =("CON {}🌄 \nWelcome to'\033[1m'Nav Healthcare'\033[0m'"
+            variables.response =("CON {}🌄 \nWelcome to Nav Healthcare"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
             ).format(Good_Afternoon)
         else:
             Good_Evening="Good Evening"
-            variables.response =("CON {}🌙 \nWelcome to'\033[1m'Nav Healthcare'\033[0m'"
+            variables.response =("CON {}🌙 \nWelcome to Nav Healthcare"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
             ).format(Good_Evening)
 
     elif text == "1":
-        variables.response = "CON First, Whats your name?\n"
+        variables.response=("CON Whats your Email, just to check for any corresponding appointments") 
+        variables.responded_A == True
         
-
-    elif text is not None:
+    elif variables.responded_A == True :
         text = request.values.get("",text)
-        name = text.split("*")
-        namef = name[1]
-
-        if not re.match("^[A-z][A-z|\.|\s]+$",namef):
+        email = text.split("*")[1]
+        print(email)
+        if email.endswith('@gmail.com') or email.endswith('@outlook.com'):
+            variables.response = "CON Whats your name?\n"
+            variables.responded_A = False
+            variables.responded_B = True
+        
+        else:
+            variables.response = ("END Invalid input. Try again")
+            
+    elif variables.responded_A == True:
+        text = request.values.get("",text)
+        name = text.split("*")[2]
+        print(name)
+        if not re.match("^[A-z][A-z|\.|\s]+$",name):
             variables.response = ("END  Invalid input. Try again")
         else:
-            variables.response=("END Hey👋 {}\nWe are happy to have you😍." 
-            ).format(name[1])
+            variables.response =("What is the Age of the patient?")
+            variables.responded_B = True
 
     else:
         variables.response = "END Invalid input. Try again."  
