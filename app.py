@@ -1,5 +1,3 @@
-from tkinter import NO
-from unicodedata import name
 from flask import Flask, request
 import africastalking
 import os
