@@ -1,4 +1,3 @@
-from unicodedata import name
 from flask import Flask, request
 import africastalking
 import os
@@ -19,7 +18,7 @@ sms = africastalking.SMS
 
 @app.route('/', methods=['POST', 'GET'])
 
-def callback():
+def callback(text):
 
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
@@ -69,7 +68,7 @@ def callback():
             variables.response = ("END Invalid input. Try again")
             
     elif text is not None:
-        name = text[2]
+        name = request.values.get("",text.split("*")[2])
         print(name)
         if not re.match("^[A-z][A-z|\.|\s]+$",name):
             variables.response = ("END  Invalid input. Try again")
