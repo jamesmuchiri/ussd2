@@ -27,8 +27,6 @@ def callback():
     phone_number = []
     phone_number.append(phone_number)
 
-    variables.responded_A = False
-    variables.responded_B = False
 
     if text == "" and variables.responded_A == False:
         now = maya.MayaDT.from_datetime(datetime.utcnow())
@@ -59,21 +57,18 @@ def callback():
 
     elif text == "1":
         variables.response=("CON Whats your Email, just to check for any corresponding appointments") 
-        variables.responded_A == True
         
-    elif variables.responded_A == True :
+    elif text==" " :
         text = request.values.get("",text)
         email = text.split("*")[1]
         print(email)
         if email.endswith('@gmail.com') or email.endswith('@outlook.com'):
             variables.response = "CON Whats your name?\n"
-            variables.responded_A = False
-            variables.responded_B = True
         
         else:
             variables.response = ("END Invalid input. Try again")
             
-    elif variables.responded_A == True:
+    elif text =="":
         text = request.values.get("",text)
         name = text.split("*")[2]
         print(name)
@@ -81,7 +76,7 @@ def callback():
             variables.response = ("END  Invalid input. Try again")
         else:
             variables.response =("What is the Age of the patient?")
-            variables.responded_B = True
+            
 
     else:
         variables.response = "END Invalid input. Try again."  
