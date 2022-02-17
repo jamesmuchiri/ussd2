@@ -60,11 +60,12 @@ def callback():
         
 
     elif text is not None:
-        name = request.values.get("",text)
-        namef = name.split("*")
+        text = request.values.get("",text)
+        name = text.split("*")
+        namef=name[1]
         print(namef)
         variables.response=("END Hey👋 {}\nWe are happy to have you😍." 
-        ).format(name)
+        ).format(namef)
 
     else:
         variables.response = "END Invalid input. Try again."  
