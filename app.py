@@ -61,7 +61,8 @@ def callback():
         
 
     elif text is not None:
-        name = request.values.get(text[1])
+        text = request.values.get("text")
+        name = text[1]
         variables.response=("END Hey👋 {}\nWe are happy to have you😍." 
         ).format(name)
 
