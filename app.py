@@ -34,7 +34,7 @@ def callback():
 
         if 5<= Time_zone <12 :
             Good_Morning="Good Morning"
-            variables.response =("CON {}🌅 \nWelcome to Nav Healthcare Services"
+            variables.response =("CON {}🌅 \nWelcome to'\033[1m'+ Nav Healthcare +'\033[1m'"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
@@ -42,14 +42,14 @@ def callback():
 
         elif  12 <= Time_zone < 17 :
             Good_Afternoon="Good Afternoon"
-            variables.response =("CON {}🌄 \nWelcome to Nav Healthcare Services"
+            variables.response =("CON {}🌄 \nWelcome to'\033[1m'+ Nav Healthcare +'\033[1m'"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
             ).format(Good_Afternoon)
         else:
             Good_Evening="Good Evening"
-            variables.response =("CON {}🌙 \nWelcome to Nav Healthcare Services"
+            variables.response =("CON {}🌙 \nWelcome to'\033[1m'+ Nav Healthcare +'\033[1m'"
                                 "\nHow may i help you"
                                 "\n  1.Book an appointmet"
                                 "\n  2.Diagnosis"
@@ -65,7 +65,7 @@ def callback():
         namef = name[1]
 
         if not re.match("^[A-z][A-z|\.|\s]+$",namef):
-            variables.response = ("END Invalid name")
+            variables.response = ("END  Invalid input. Try again")
         else:
             variables.response=("END Hey👋 {}\nWe are happy to have you😍." 
             ).format(name[1])
