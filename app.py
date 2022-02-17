@@ -28,7 +28,7 @@ def callback():
     phone_number.append(phone_number)
 
 
-    if text == "" and variables.responded_A == False:
+    if text == "":
         now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = now.hour +3
 
@@ -58,7 +58,7 @@ def callback():
     elif text == "1":
         variables.response=("CON Whats your Email, just to check for any corresponding appointments") 
         
-    elif text==" " :
+    elif text is not None:
         text = request.values.get("",text)
         email = text.split("*")[1]
         print(email)
@@ -68,7 +68,7 @@ def callback():
         else:
             variables.response = ("END Invalid input. Try again")
             
-    elif text =="":
+    elif text is not None:
         text = request.values.get("",text)
         name = text.split("*")[2]
         print(name)
