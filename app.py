@@ -68,9 +68,16 @@ def callback():
             variables.response = ("CON Invalid name"
                                 "\nWhats your name?")
 
+
         else:
-            variables.response=("END Hey👋 {}\nWe are happy to have you😍." 
-            ).format(namef)
+            text = request.values.get("",text)
+            name = text.split("*")
+            namef = name[2]
+            if not re.match("^[A-z][A-z|\.|\s]+$",namef):
+                variables.response = ("END Try aga1n")
+            else:
+                variables.response=("END Hey👋 {}\nWe are happy to have you😍." 
+                ).format(namef)
 
     else:
         variables.response = "END Invalid input. Try again."  
