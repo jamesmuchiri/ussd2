@@ -61,7 +61,7 @@ def callback():
 
     elif text is not None:
         name = request.values.get("",text)
-        namef = name.split()
+        namef = name.split("*")
         print(namef)
         variables.response=("END Hey👋 {}\nWe are happy to have you😍." 
         ).format(name)
