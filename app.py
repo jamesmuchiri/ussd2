@@ -20,53 +20,61 @@ sms = africastalking.SMS
 
 @app.route('/', methods=['POST', 'GET'])
 
+class Main:
+    def Greetings(self):
+        session_id = request.values.get("sessionId", None)
+        service_code = request.values.get("serviceCode", None)
+        phone_number = request.values.get("phoneNumber", None)
+        phone_number = []
+        phone_number.append(phone_number)
+        text = request.values.get("text")
 
-def Greetings():
-    session_id = request.values.get("sessionId", None)
-    service_code = request.values.get("serviceCode", None)
-    phone_number = request.values.get("phoneNumber", None)
-    phone_number = []
-    phone_number.append(phone_number)
-    text = request.values.get("text")
+        if text == "":
+            now = maya.MayaDT.from_datetime(datetime.utcnow())
+            Time_zone = now.hour +3
 
-    if text == "":
-        now = maya.MayaDT.from_datetime(datetime.utcnow())
-        Time_zone = now.hour +3
+            if 5<= Time_zone <12 :
+                Good_Morning="Good Morning"
+                variables.response =("CON {}"
+                                            "\nHow may i help you"
+                                            "\n  -Limit "
+                                            "\n  -Balance"
+                                            "\n  -Loan"
+                                            "\n  -Amount"
+                ).format(Good_Morning)
 
-        if 5<= Time_zone <12 :
-            Good_Morning="Good Morning"
-            variables.response =("CON {}"
-                                        "\nHow may i help you"
-                                        "\n  -Limit "
-                                        "\n  -Balance"
-                                        "\n  -Loan"
-                                        "\n  -Amount"
-            ).format(Good_Morning)
+            elif  12 <= Time_zone < 17 :
+                Good_Afternoon="Good Afternoon"
+                variables.response =("CON {}"
+                                            "\nHow may i help you"
+                                            "\n  -Limit "
+                                            "\n  -Balance"
+                                            "\n  -Loan"
+                                            "\n  -Amount"
+                        ).format(Good_Afternoon)
+            else:
+                Good_Evening="Good Evening"
+                variables.response =("CON {}"
+                                            "\nHow may i help you"
+                                            "\n  -Limit "
+                                            "\n  -Balance"
+                                            "\n  -Loan"
+                                            "\n  -Amount"
+                        ).format(Good_Evening)
 
-        elif  12 <= Time_zone < 17 :
-            Good_Afternoon="Good Afternoon"
-            variables.response =("CON {}"
-                                        "\nHow may i help you"
-                                        "\n  -Limit "
-                                        "\n  -Balance"
-                                        "\n  -Loan"
-                                        "\n  -Amount"
-                    ).format(Good_Afternoon)
-        else:
-            Good_Evening="Good Evening"
-            variables.response =("CON {}"
-                                        "\nHow may i help you"
-                                        "\n  -Limit "
-                                        "\n  -Balance"
-                                        "\n  -Loan"
-                                        "\n  -Amount"
-                    ).format(Good_Evening)
+        self.Limmit()
+        return variables.response
 
+    def Limmit(self):
+        text = request.values.get("text")
+        if text == "limit":
+            variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.")
+        
+        return variables.response
+        
+            
+        
     
-    if text == "limit":
-        variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
-    
-    return variables.response
 
 
     
