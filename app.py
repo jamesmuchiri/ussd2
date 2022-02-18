@@ -63,14 +63,15 @@ def Greetings():
                                         "\n  -Loan"
                                         "\n  -Amount"
                     ).format(Good_Evening)
-    
-        return variables.response
+    Balance(text)
+    return variables.response
 
-    def Balance(text):
-        if text == "balance":
-            variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
-            return variables.response
-        return Balance(text)
+def Balance(text):
+    if text == "balance":
+        variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
+    
+    return variables.response
+    
 
 
     
