@@ -63,15 +63,16 @@ class ussd:
                                             "\n  -Amount"
                         ).format(Good_Evening)
 
-            return variables.response
-        return self.Greetings
+        return variables.response
+        
 
     def Limit(self):
         text = request.values.get("text")
         if text == "Limit" | text == "limit":
             variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
-            return variables.response
-        return self.Limit
+        
+        return variables.response
+        
         
 
 
