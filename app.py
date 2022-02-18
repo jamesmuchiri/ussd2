@@ -62,30 +62,17 @@ def Greetings():
                                         "\n  -Amount"
                     ).format(Good_Evening)
 
-    
+    return variables.response
 
-    def Limit():
+def Limit():
         text = request.values.get("text")
         if text == "Limit" | text == "limit":
             variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
         return Limit
-    def Balance(text):
-        if text == "Balance" | text == "balance":
-            variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
-        return Balance
-            
-    def Loan(text):
-
-        if text == "Loan" | text == "loan":
-            variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
-        return Loan   
-    def Amount(text):
-        if text == "Amount" | text == "amount":
-            variables.response=("END Dear $first_name, you have selected KES XXXX, the loan advance will be processed shortl") 
-        return Amount  
+    
 
 
-    return variables.response
+    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=os.environ.get("PORT"))
