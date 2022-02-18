@@ -1,2 +1,2 @@
-responded_A = False
-response = ""
+response =""
+now =""
