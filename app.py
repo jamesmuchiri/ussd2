@@ -31,7 +31,6 @@ def Callback():
 
 def input(text):
     text= request.values.get("text")
-    Greetings(text)
     return text
 def Greetings(text):
     if text == "":
