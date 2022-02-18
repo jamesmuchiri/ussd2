@@ -1,4 +1,3 @@
-from ast import Return
 from flask import Flask, request
 import africastalking
 import os
