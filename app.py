@@ -22,13 +22,18 @@ sms = africastalking.SMS
 
 class ussd:
 
-    def Greetings(self):
+    def __init__(self,text):
+
         session_id = request.values.get("sessionId", None)
         service_code = request.values.get("serviceCode", None)
         phone_number = request.values.get("phoneNumber", None)
         phone_number = []
         phone_number.append(phone_number)
-        text = request.values.get("text")
+        self.text =request.values.get("text")
+        
+        self.Greetings(text)
+   
+    def Greetings(self,text): 
 
         if text == "":
             now = maya.MayaDT.from_datetime(datetime.utcnow())
@@ -63,16 +68,7 @@ class ussd:
                                             "\n  -Amount"
                         ).format(Good_Evening)
 
-        return str(variables.response)
-        
-
-    def Limit(self):
-        text = request.values.get("text")
-        if text == "Limit" | text == "limit":
-            variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
-        
-        return str(variables.response)
-        
+        return variables.response
         
 
 
