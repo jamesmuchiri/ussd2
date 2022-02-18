@@ -32,8 +32,8 @@ def Greetings():
     text= request.values.get("text")
 
     if text == "":
-        now = maya.MayaDT.from_datetime(datetime.utcnow())
-        Time_zone = now.hour +3
+        variables.now = maya.MayaDT.from_datetime(datetime.utcnow())
+        Time_zone = variables.now.hour +3
 
         if 5<= Time_zone <12 :
             Good_Morning="Good Morning"
@@ -68,8 +68,13 @@ def Greetings():
 
 def Balance(text):
     if text == "balance":
-        variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
-    
+        variables.now = datetime.datetime.now()
+        time =variables.now.strftime("%B %d, %Y")
+
+        variables.response=("END Dear $first_name, your effective balance as at {} is KES $loan_balance."
+        ).format(time)
+        
+        
     return variables.response
     
 
