@@ -1,3 +1,4 @@
+from ast import Return
 from flask import Flask, request
 import africastalking
 import os
@@ -22,15 +23,20 @@ sms = africastalking.SMS
 
 
 class Main:
+    session_id = request.values.get("sessionId", None)
+    service_code = request.values.get("serviceCode", None)
+    phone_number = request.values.get("phoneNumber", None)
+    phone_number = []
+    phone_number.append(phone_number)
+    
+    def __init__(self,text):
+        self.text = text
+       
     def Greetings(self,text):
-        session_id = request.values.get("sessionId", None)
-        service_code = request.values.get("serviceCode", None)
-        phone_number = request.values.get("phoneNumber", None)
-        phone_number = []
-        phone_number.append(phone_number)
+        
         self.text= request.values.get("text")
 
-        if text == "":
+        if self.text == "":
             now = maya.MayaDT.from_datetime(datetime.utcnow())
             Time_zone = now.hour +3
 
