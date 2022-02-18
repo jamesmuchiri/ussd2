@@ -18,7 +18,7 @@ sms = africastalking.SMS
 
 @app.route('/', methods=['POST', 'GET'])
 
-def callback(text):
+def callback():
 
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
