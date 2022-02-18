@@ -27,7 +27,6 @@ def callback():
     phone_number = []
     phone_number.append(phone_number)
     
-    return
 
 def Greetings():
     text = request.values.get("text")
