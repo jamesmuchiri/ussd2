@@ -63,7 +63,7 @@ def Greetings():
                     ).format(Good_Evening)
 
     
-    if text == "Limit" | text == "limit":
+    if text == "limit":
         variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
     
     return variables.response
