@@ -20,17 +20,15 @@ sms = africastalking.SMS
 
 @app.route('/', methods=['POST', 'GET'])
 
-class callback():
+def callback():
+    session_id = request.values.get("sessionId", None)
+    service_code = request.values.get("serviceCode", None)
+    phone_number = request.values.get("phoneNumber", None)
+    text = request.values.get("text")
+    phone_number = []
+    phone_number.append(phone_number)
 
-    def Greetings(self):
-        session_id = request.values.get("sessionId", None)
-        service_code = request.values.get("serviceCode", None)
-        phone_number = request.values.get("phoneNumber", None)
-        text = request.values.get("text")
-        phone_number = []
-        phone_number.append(phone_number)
-
-
+    def Greetings():
         if text == "":
             now = maya.MayaDT.from_datetime(datetime.utcnow())
             Time_zone = now.hour +3
@@ -64,16 +62,29 @@ class callback():
                                     "\n  -Amount"
                 ).format(Good_Evening)
 
-        self.Limit(text)
-        return variables.response
+        return Greetings  
 
-    def Limit(self,text):
+    def Limit(text):
         if text == "Limit" | text == "limit":
             variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
-        return self.Limit
-    
+        return Limit
+    def Balance(text):
+        if text == "Balance" | text == "balance":
+            variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
+        return Balance
+        
+    def Loan(text):
 
-    
+        if text == "Loan" | text == "loan":
+            variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
+        return Loan   
+    def Amount(text):
+        if text == "Amount" | text == "amount":
+            variables.response=("END Dear $first_name, you have selected KES XXXX, the loan advance will be processed shortl") 
+        return Amount  
+
+
+    return callback(variables.response)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=os.environ.get("PORT"))
