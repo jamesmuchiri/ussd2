@@ -20,7 +20,7 @@ sms = africastalking.SMS
 
 @app.route('/', methods=['POST', 'GET'])
 
-def callback(text):
+def callback():
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
     phone_number = request.values.get("phoneNumber", None)
@@ -28,7 +28,7 @@ def callback(text):
     phone_number = []
     phone_number.append(phone_number)
 
-    
+
     if text == "":
         now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = now.hour +3
@@ -74,6 +74,7 @@ def callback(text):
         return Balance
         
     def Loan(text):
+        
         if text == "Loan" | text == "loan":
             variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
         return Loan   
