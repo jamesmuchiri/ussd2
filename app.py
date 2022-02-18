@@ -1,4 +1,4 @@
-
+from ast import Return
 from flask import Flask, request
 import africastalking
 import os
@@ -65,6 +65,11 @@ def Greetings():
                                         "\n  -Amount"
                     ).format(Good_Evening)
     
+    return 
+
+def Balance(text):
+    if text == "balance":
+        variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
     return variables.response
 
 
