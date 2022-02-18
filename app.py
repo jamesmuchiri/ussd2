@@ -1,4 +1,3 @@
-from ast import Return
 from flask import Flask, request
 import africastalking
 import os
@@ -17,12 +16,7 @@ africastalking.initialize(username, api_key)
 
 sms = africastalking.SMS
 
-
-
 @app.route('/', methods=['POST', 'GET'])
-
-
-
 
 def Greetings():
     session_id = request.values.get("sessionId", None)
