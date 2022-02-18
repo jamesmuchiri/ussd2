@@ -61,18 +61,18 @@ def callback():
                                 "\n  -Amount"
             ).format(Good_Evening)
 
-        def Limmit():
-            if text == "Limit" | text == "limit":
-                variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
-        def Balance():
-            if text == "Balance" | text == "balance":
-                variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
-        def Loan():
-            if text == "Loan" | text == "loan":
-                variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
-        def Amount():
-            if text == "Amount" | text == "amount":
-                variables.response=("END Dear $first_name, you have selected KES XXXX, the loan advance will be processed shortl") 
+    def Limmit():
+        if text == "Limit" | text == "limit":
+            variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
+    def Balance():
+        if text == "Balance" | text == "balance":
+            variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
+    def Loan():
+        if text == "Loan" | text == "loan":
+            variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
+    def Amount():
+        if text == "Amount" | text == "amount":
+            variables.response=("END Dear $first_name, you have selected KES XXXX, the loan advance will be processed shortl") 
             
     return variables.response
 
