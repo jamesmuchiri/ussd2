@@ -20,15 +20,16 @@ sms = africastalking.SMS
 
 @app.route('/', methods=['POST', 'GET'])
 
-def callback():
-    session_id = request.values.get("sessionId", None)
-    service_code = request.values.get("serviceCode", None)
-    phone_number = request.values.get("phoneNumber", None)
-    text = request.values.get("text")
-    phone_number = []
-    phone_number.append(phone_number)
+class callback():
 
-    def Greetings(text):
+    def Greetings(self):
+        session_id = request.values.get("sessionId", None)
+        service_code = request.values.get("serviceCode", None)
+        phone_number = request.values.get("phoneNumber", None)
+        text = request.values.get("text")
+        phone_number = []
+        phone_number.append(phone_number)
+
 
         if text == "":
             now = maya.MayaDT.from_datetime(datetime.utcnow())
@@ -63,29 +64,30 @@ def callback():
                                     "\n  -Amount"
                 ).format(Good_Evening)
 
-        return Greetings   
+        self.Limit(text) 
+        return variables.response  
 
-    def Limit(text):
+    def Limit(self,text):
         if text == "Limit" | text == "limit":
             variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
-        return Limit
-    def Balance(text):
+        return variables.response
+    def Balance(self,text):
         if text == "Balance" | text == "balance":
             variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
-        return Balance
+        return variables.response
         
-    def Loan(text):
+    def Loan(self,text):
 
         if text == "Loan" | text == "loan":
             variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
-        return Loan   
-    def Amount(text):
+        return variables.response   
+    def Amount(self,text):
         if text == "Amount" | text == "amount":
             variables.response=("END Dear $first_name, you have selected KES XXXX, the loan advance will be processed shortl") 
-        return Amount  
+        return variables.response  
 
 
-    return variables.response
+    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=os.environ.get("PORT"))
