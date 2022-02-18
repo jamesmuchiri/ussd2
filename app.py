@@ -16,60 +16,59 @@ africastalking.initialize(username, api_key)
 
 sms = africastalking.SMS
 
-
+session_id = request.values.get("sessionId", None)
+service_code = request.values.get("serviceCode", None)
+phone_number = request.values.get("phoneNumber", None)
+phone_number = []
+phone_number.append(phone_number)
+text = request.values.get("text")
 
 @app.route('/', methods=['POST', 'GET'])
 
-class ussd:
 
-    def __init__(self,text):
+def Greetings():
+    if text == "":
+        now = maya.MayaDT.from_datetime(datetime.utcnow())
+        Time_zone = now.hour +3
 
-        session_id = request.values.get("sessionId", None)
-        service_code = request.values.get("serviceCode", None)
-        phone_number = request.values.get("phoneNumber", None)
-        phone_number = []
-        phone_number.append(phone_number)
-        self.text =request.values.get("text")
-        
-        self.Greetings(text)
-   
-    def Greetings(self,text): 
+        if 5<= Time_zone <12 :
+            Good_Morning="Good Morning"
+            variables.response =("CON {}"
+                                        "\nHow may i help you"
+                                        "\n  -Limit "
+                                        "\n  -Balance"
+                                        "\n  -Loan"
+                                        "\n  -Amount"
+            ).format(Good_Morning)
 
-        if text == "":
-            now = maya.MayaDT.from_datetime(datetime.utcnow())
-            Time_zone = now.hour +3
+        elif  12 <= Time_zone < 17 :
+            Good_Afternoon="Good Afternoon"
+            variables.response =("CON {}"
+                                        "\nHow may i help you"
+                                        "\n  -Limit "
+                                        "\n  -Balance"
+                                        "\n  -Loan"
+                                        "\n  -Amount"
+                    ).format(Good_Afternoon)
+        else:
+            Good_Evening="Good Evening"
+            variables.response =("CON {}"
+                                        "\nHow may i help you"
+                                        "\n  -Limit "
+                                        "\n  -Balance"
+                                        "\n  -Loan"
+                                        "\n  -Amount"
+                    ).format(Good_Evening)
 
-            if 5<= Time_zone <12 :
-                Good_Morning="Good Morning"
-                variables.response =("CON {}"
-                                            "\nHow may i help you"
-                                            "\n  -Limit "
-                                            "\n  -Balance"
-                                            "\n  -Loan"
-                                            "\n  -Amount"
-                ).format(Good_Morning)
+    return variables.response
 
-            elif  12 <= Time_zone < 17 :
-                Good_Afternoon="Good Afternoon"
-                variables.response =("CON {}"
-                                            "\nHow may i help you"
-                                            "\n  -Limit "
-                                            "\n  -Balance"
-                                            "\n  -Loan"
-                                            "\n  -Amount"
-                        ).format(Good_Afternoon)
-            else:
-                Good_Evening="Good Evening"
-                variables.response =("CON {}"
-                                            "\nHow may i help you"
-                                            "\n  -Limit "
-                                            "\n  -Balance"
-                                            "\n  -Loan"
-                                            "\n  -Amount"
-                        ).format(Good_Evening)
-
+def Limit():
+    text = request.values.get("text")
+    if text == "Limit" | text == "limit":
+        variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
         return variables.response
-        
+    return Limit
+    
 
 
     
