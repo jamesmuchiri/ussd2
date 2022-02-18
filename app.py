@@ -1,8 +1,6 @@
 from flask import Flask, request
 import africastalking
 import os
-
-from pip import main
 import variables
 import re
 import maya
@@ -77,8 +75,9 @@ class Main:
             
         
     
-Object = Main()
-Object.Greetings
+
 
 if __name__ == "__main__":
+    Object = Main()
+    Object.Greetings
     app.run(host="0.0.0.0", port=os.environ.get("PORT"))
