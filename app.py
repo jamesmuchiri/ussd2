@@ -28,7 +28,7 @@ def callback():
     phone_number = []
     phone_number.append(phone_number)
 
-    def Greetings():
+    def Greetings(text):
         if text == "":
             now = maya.MayaDT.from_datetime(datetime.utcnow())
             Time_zone = now.hour +3
@@ -62,27 +62,28 @@ def callback():
                                     "\n  -Amount"
                 ).format(Good_Evening)
 
-        return Greetings  
-
-    def Limit(text):
-        if text == "Limit" | text == "limit":
-            variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
-        return Limit
-    def Balance(text):
-        if text == "Balance" | text == "balance":
-            variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
-        return Balance
         
-    def Loan(text):
 
-        if text == "Loan" | text == "loan":
-            variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
-        return Loan   
-    def Amount(text):
-        if text == "Amount" | text == "amount":
-            variables.response=("END Dear $first_name, you have selected KES XXXX, the loan advance will be processed shortl") 
-        return Amount  
+        def Limit(text):
+            if text == "Limit" | text == "limit":
+                variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
+            return Limit
+        def Balance(text):
+            if text == "Balance" | text == "balance":
+                variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
+            return Balance
+            
+        def Loan(text):
 
+            if text == "Loan" | text == "loan":
+                variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
+            return Loan   
+        def Amount(text):
+            if text == "Amount" | text == "amount":
+                variables.response=("END Dear $first_name, you have selected KES XXXX, the loan advance will be processed shortl") 
+            return Amount  
+
+        return Greetings
 
     return variables.response
 
