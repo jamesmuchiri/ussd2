@@ -64,28 +64,14 @@ class callback():
                                     "\n  -Amount"
                 ).format(Good_Evening)
 
-        self.Limit(text) 
-        return variables.response  
+        self.Limit(text)
+        return variables.response
 
     def Limit(self,text):
         if text == "Limit" | text == "limit":
             variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
-        return variables.response
-    def Balance(self,text):
-        if text == "Balance" | text == "balance":
-            variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
-        return variables.response
-        
-    def Loan(self,text):
-
-        if text == "Loan" | text == "loan":
-            variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
-        return variables.response   
-    def Amount(self,text):
-        if text == "Amount" | text == "amount":
-            variables.response=("END Dear $first_name, you have selected KES XXXX, the loan advance will be processed shortl") 
-        return variables.response  
-
+        return self.Limit
+    
 
     
 
