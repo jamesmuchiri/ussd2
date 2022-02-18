@@ -28,39 +28,39 @@ def Greetings():
     phone_number = []
     phone_number.append(phone_number)
     text = request.values.get("text")
-    
+
     if text == "":
         now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = now.hour +3
 
-    if 5<= Time_zone <12 :
-        Good_Morning="Good Morning"
-        variables.response =("CON {}"
-                                    "\nHow may i help you"
-                                    "\n  -Limit "
-                                    "\n  -Balance"
-                                    "\n  -Loan"
-                                    "\n  -Amount"
-        ).format(Good_Morning)
+        if 5<= Time_zone <12 :
+            Good_Morning="Good Morning"
+            variables.response =("CON {}"
+                                        "\nHow may i help you"
+                                        "\n  -Limit "
+                                        "\n  -Balance"
+                                        "\n  -Loan"
+                                        "\n  -Amount"
+            ).format(Good_Morning)
 
-    elif  12 <= Time_zone < 17 :
-        Good_Afternoon="Good Afternoon"
-        variables.response =("CON {}"
-                                    "\nHow may i help you"
-                                    "\n  -Limit "
-                                    "\n  -Balance"
-                                    "\n  -Loan"
-                                    "\n  -Amount"
-                ).format(Good_Afternoon)
-    else:
-        Good_Evening="Good Evening"
-        variables.response =("CON {}"
-                                    "\nHow may i help you"
-                                    "\n  -Limit "
-                                    "\n  -Balance"
-                                    "\n  -Loan"
-                                    "\n  -Amount"
-                ).format(Good_Evening)
+        elif  12 <= Time_zone < 17 :
+            Good_Afternoon="Good Afternoon"
+            variables.response =("CON {}"
+                                        "\nHow may i help you"
+                                        "\n  -Limit "
+                                        "\n  -Balance"
+                                        "\n  -Loan"
+                                        "\n  -Amount"
+                    ).format(Good_Afternoon)
+        else:
+            Good_Evening="Good Evening"
+            variables.response =("CON {}"
+                                        "\nHow may i help you"
+                                        "\n  -Limit "
+                                        "\n  -Balance"
+                                        "\n  -Loan"
+                                        "\n  -Amount"
+                    ).format(Good_Evening)
 
         return Greetings(text) 
 
@@ -72,7 +72,7 @@ def Greetings():
         if text == "Balance" | text == "balance":
             variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
         return Balance
-        
+            
     def Loan(text):
 
         if text == "Loan" | text == "loan":
