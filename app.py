@@ -19,9 +19,7 @@ sms = africastalking.SMS
 
 
 @app.route('/', methods=['POST', 'GET'])
-
-
-def Greetings(text):
+def Chat():
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
     phone_number = request.values.get("phoneNumber", None)
@@ -29,7 +27,12 @@ def Greetings(text):
     phone_number.append(phone_number)
     text = request.values.get("text")
 
-    if text == "":
+    return text
+
+def Greetings(text):
+    
+
+    if Chat(text) == "":
         now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = now.hour +3
 
@@ -61,7 +64,7 @@ def Greetings(text):
                                         "\n  -Loan"
                                         "\n  -Amount"
                     ).format(Good_Evening)
-        return
+        return text
     return variables.response
 
 
