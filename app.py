@@ -62,7 +62,7 @@ def Greetings():
                                         "\n  -Amount"
                     ).format(Good_Evening)
 
-        return Greetings(text) 
+    
 
     def Limit(text):
         if text == "Limit" | text == "limit":
