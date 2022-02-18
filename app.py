@@ -1,3 +1,4 @@
+from unicodedata import name
 from flask import Flask, request
 import africastalking
 import os
@@ -34,51 +35,46 @@ def callback(text):
 
         if 5<= Time_zone <12 :
             Good_Morning="Good Morning"
-            variables.response =("CON {}🌅 \nWelcome to Nav Healthcare"
+            variables.response =("CON {}"
                                 "\nHow may i help you"
-                                "\n  1.Book an appointmet"
-                                "\n  2.Diagnosis"
+                                "\n  -Limit "
+                                "\n  -Balance"
+                                "\n  -Loan"
+                                "\n  -Amount"
             ).format(Good_Morning)
 
         elif  12 <= Time_zone < 17 :
             Good_Afternoon="Good Afternoon"
-            variables.response =("CON {}🌄 \nWelcome to Nav Healthcare"
+            variables.response =("CON {}"
                                 "\nHow may i help you"
-                                "\n  1.Book an appointmet"
-                                "\n  2.Diagnosis"
+                                "\n  -Limit "
+                                "\n  -Balance"
+                                "\n  -Loan"
+                                "\n  -Amount"
             ).format(Good_Afternoon)
         else:
             Good_Evening="Good Evening"
-            variables.response =("CON {}🌙 \nWelcome to Nav Healthcare"
+            variables.response =("CON {}"
                                 "\nHow may i help you"
-                                "\n  1.Book an appointmet"
-                                "\n  2.Diagnosis"
+                                "\n  -Limit "
+                                "\n  -Balance"
+                                "\n  -Loan"
+                                "\n  -Amount"
             ).format(Good_Evening)
 
-    elif text == "1":
-        variables.response=("CON Whats your Email, just to check for any corresponding appointments") 
-        
-    elif text is not None:
-        email = request.values.get("",text.split("*")[1])
-        print(email)
-        if email.endswith('@gmail.com') or email.endswith('@outlook.com'):
-            variables.response = "CON Whats your name?\n"
-        
-        else:
-            variables.response = ("END Invalid input. Try again")
+        def Limmit():
+            if text == "Limit" | text == "limit":
+                variables.response=("END Dear $first_name, your advance limit as at $date is KES $loan_limit.") 
+        def Balance():
+            if text == "Balance" | text == "balance":
+                variables.response=("END Dear $first_name, your effective balance as at $date is KES $loan_balance.") 
+        def Loan():
+            if text == "Loan" | text == "loan":
+                variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
+        def Amount():
+            if text == "Amount" | text == "amount":
+                variables.response=("END Dear $first_name, you have selected KES XXXX, the loan advance will be processed shortl") 
             
-    elif text is not None:
-        name = request.values.get("",text.split("*")[2])
-        print(name)
-        if not re.match("^[A-z][A-z|\.|\s]+$",name):
-            variables.response = ("END  Invalid input. Try again")
-        else:
-            variables.response =("What is the Age of the patient?")
-            
-
-    else:
-        variables.response = "END Invalid input. Try again."  
-
     return variables.response
 
 if __name__ == "__main__":
