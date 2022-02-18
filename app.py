@@ -28,41 +28,42 @@ def callback():
     phone_number = []
     phone_number.append(phone_number)
 
+    def Greetings(text):
 
-    if text == "":
-        now = maya.MayaDT.from_datetime(datetime.utcnow())
-        Time_zone = now.hour +3
+        if text == "":
+            now = maya.MayaDT.from_datetime(datetime.utcnow())
+            Time_zone = now.hour +3
 
-        if 5<= Time_zone <12 :
-            Good_Morning="Good Morning"
-            variables.response =("CON {}"
-                                "\nHow may i help you"
-                                "\n  -Limit "
-                                "\n  -Balance"
-                                "\n  -Loan"
-                                "\n  -Amount"
-            ).format(Good_Morning)
+            if 5<= Time_zone <12 :
+                Good_Morning="Good Morning"
+                variables.response =("CON {}"
+                                    "\nHow may i help you"
+                                    "\n  -Limit "
+                                    "\n  -Balance"
+                                    "\n  -Loan"
+                                    "\n  -Amount"
+                ).format(Good_Morning)
 
-        elif  12 <= Time_zone < 17 :
-            Good_Afternoon="Good Afternoon"
-            variables.response =("CON {}"
-                                "\nHow may i help you"
-                                "\n  -Limit "
-                                "\n  -Balance"
-                                "\n  -Loan"
-                                "\n  -Amount"
-            ).format(Good_Afternoon)
-        else:
-            Good_Evening="Good Evening"
-            variables.response =("CON {}"
-                                "\nHow may i help you"
-                                "\n  -Limit "
-                                "\n  -Balance"
-                                "\n  -Loan"
-                                "\n  -Amount"
-            ).format(Good_Evening)
+            elif  12 <= Time_zone < 17 :
+                Good_Afternoon="Good Afternoon"
+                variables.response =("CON {}"
+                                    "\nHow may i help you"
+                                    "\n  -Limit "
+                                    "\n  -Balance"
+                                    "\n  -Loan"
+                                    "\n  -Amount"
+                ).format(Good_Afternoon)
+            else:
+                Good_Evening="Good Evening"
+                variables.response =("CON {}"
+                                    "\nHow may i help you"
+                                    "\n  -Limit "
+                                    "\n  -Balance"
+                                    "\n  -Loan"
+                                    "\n  -Amount"
+                ).format(Good_Evening)
 
-        
+        return Greetings   
 
     def Limit(text):
         if text == "Limit" | text == "limit":
@@ -74,7 +75,7 @@ def callback():
         return Balance
         
     def Loan(text):
-        
+
         if text == "Loan" | text == "loan":
             variables.response=("END Dear $first_name, you qualify for a new loan. Please enter a loan value between 500 and $loan_limit") 
         return Loan   
