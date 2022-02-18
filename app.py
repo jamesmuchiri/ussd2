@@ -68,11 +68,8 @@ def Greetings():
 
 def Balance(text):
     if text == "balance":
-        variables.now = datetime.datetime.now()
-        time =variables.now.strftime("%B %d, %Y")
-
         variables.response=("END Dear $first_name, your effective balance as at {} is KES $loan_balance."
-        ).format(time)
+        ).format(variables.now)
         
         
     return variables.response
