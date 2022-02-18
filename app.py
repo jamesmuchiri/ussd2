@@ -19,20 +19,22 @@ sms = africastalking.SMS
 
 
 @app.route('/', methods=['POST', 'GET'])
-def Chat():
+
+
+def Callback():
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
     phone_number = request.values.get("phoneNumber", None)
     phone_number = []
     phone_number.append(phone_number)
-    text = request.values.get("text")
-
-    return text
-
-def Greetings(text):
     
 
-    if Chat(text) == "":
+def input(text):
+    text= request.values.get("text")
+    Greetings(text)
+    return text
+def Greetings(text):
+    if text == "":
         now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = now.hour +3
 
