@@ -1,3 +1,4 @@
+from ast import Return
 from flask import Flask, request
 import africastalking
 import os
@@ -27,7 +28,8 @@ def Callback():
     phone_number = request.values.get("phoneNumber", None)
     phone_number = []
     phone_number.append(phone_number)
-    
+
+    return
 
 def input(text):
     text= request.values.get("text")
