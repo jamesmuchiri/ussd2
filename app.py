@@ -16,7 +16,12 @@ africastalking.initialize(username, api_key)
 
 sms = africastalking.SMS
 
+
+
 @app.route('/', methods=['POST', 'GET'])
+
+
+
 
 def Greetings():
     session_id = request.values.get("sessionId", None)
@@ -59,7 +64,7 @@ def Greetings():
                                         "\n  -Amount"
                     ).format(Good_Evening)
     
-    return 
+    return variables.response
 
 def Balance(text):
     if text == "balance":
