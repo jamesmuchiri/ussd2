@@ -71,15 +71,16 @@ def Greetings():
                                         "\n  -Loan"
                                         "\n  -Amount"
                     ).format(Good_Evening)
-             
+                    
+    return variables.response
         
         
-    def Balance(text):
+def Balance(text):
         
     
-        if (text == "balance" or text == "Balance" ):
+    if (text == "balance" or text == "Balance" ):
 
-            if (variables.number,) in variables.checkNumber:
+        if (variables.number,) in variables.checkNumber:
                 mycursor = db.cursor()
                 mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
                 name = mycursor.fetchone()
@@ -93,16 +94,18 @@ def Greetings():
                 variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
                 ).format(namef,date)
             
-            else:
-                variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
         else:
-            variables.response=("END Invalid input")   
+                variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
+                return variables.response
+    else:
+        variables.response=("END Invalid input")   
+        return variables.response
         
-        return Balance(text)
+    return Balance(text)
 
          
         
-    return variables.response
+    
     
 
 
