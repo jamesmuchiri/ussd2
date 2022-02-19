@@ -32,12 +32,13 @@ def Greetings():
     phone_number = request.values.get("phoneNumber","default")
     text = request.values.get("text","default")
 
-    variables.number = phone_number.split('+')[1] 
-    print(variables.number)
+    
     
 
     if text == "":                          
-        
+        variables.number = phone_number.split('+')[1] 
+        print(variables.number)
+
         mycursor = db.cursor()
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
         variables.checkNumber = mycursor.fetchall()
