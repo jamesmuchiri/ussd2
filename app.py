@@ -28,7 +28,7 @@ db = mysql.connector.connect(
     )
     
 @app.route('/', methods=['POST', 'GET'])
-def Greetings():
+def Greetings(text):
     phone_number = request.values.get("phoneNumber","default")
     text = request.values.get("text","default")
 
@@ -72,35 +72,35 @@ def Greetings():
                                         "\n  -Amount"
                     ).format(Good_Evening)
 
-    return variables.response
+   
     
         
        
-def Balance(text):
-        
-    
-    if (text == "balance" or text == "Balance" ):
+    def Balance(text):
+        if (text == "balance" or text == "Balance" ):
 
-        if (variables.number,) in variables.checkNumber:
-                mycursor = db.cursor()
-                mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
-                name = mycursor.fetchone()
-                namef = name[0]
-                print(name)
-                print(namef)
+            if (variables.number,) in variables.checkNumber:
+                    mycursor = db.cursor()
+                    mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
+                    name = mycursor.fetchone()
+                    namef = name[0]
+                    print(name)
+                    print(namef)
 
-                Time_zone = dt.datetime.now(dt.timezone.utc)
-                date = Time_zone.strftime("%d/%m/%Y, %H:%M")
+                    Time_zone = dt.datetime.now(dt.timezone.utc)
+                    date = Time_zone.strftime("%d/%m/%Y, %H:%M")
 
-                variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
-                ).format(namef,date)
-            
+                    variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
+                    ).format(namef,date)
+                
+            else:
+                    variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
+                    return variables.response
         else:
-                variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
-                return variables.response
-    else:
-        variables.response=("END Invalid input")   
-    
+            variables.response=("END Invalid input")  
+
+        return Balance 
+        
     return variables.response
         
     
