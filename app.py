@@ -90,7 +90,7 @@ def Greetings():
             print(name)
             print(namef)
 
-            Time_zone = datetime.today()
+            Time_zone = datetime.today(datetime.timezone.utc)
             date = Time_zone.strftime("%d/%m/%Y, %H:%M")
 
             variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
