@@ -79,7 +79,7 @@ def Greetings():
         print (checkNumber)
         print ((variables.number,))
 
-        if variables.number != checkNumber:
+        if (variables.number,) != checkNumber:
             variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
             
 
