@@ -36,7 +36,8 @@ def Greetings():
     text= request.values.get("text")
 
     if text == "":
-        print(phone_number)
+        number=phone_number.split('+')[1] 
+        print(number)
         variables.now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = variables.now.hour +3
 
