@@ -28,7 +28,7 @@ db = mysql.connector.connect(
     )
     
 @app.route('/', methods=['POST', 'GET'])
-def Greetings(text, phone_number):
+def Greetings(phone_number):
     phone_number = request.values.get("phoneNumber","default")
     text = request.values.get("text","default")
 
@@ -70,7 +70,8 @@ def Greetings(text, phone_number):
                                         "\n  -Loan"
                                         "\n  -Amount"
                     ).format(Good_Evening)
-    
+                    
+        return phone_number
     def Balance(text):
     
         if (text == "balance" or text == "Balance" ):
@@ -94,7 +95,7 @@ def Greetings(text, phone_number):
         else:
             variables.response=("END Invalid input")   
         
-        return Balance(text=text)
+        return Balance(text)
 
          
         
