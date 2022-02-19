@@ -84,8 +84,10 @@ def Greetings():
             mycursor = db.cursor()
             mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
             name = mycursor.fetchone()
+            namef = name[2:-3]
 
-            print(name)
+
+            print(namef)
 
             variables.response=("END Dear {}, your effective balance as at $date is KES $loan_balance."
             ).format(name)
