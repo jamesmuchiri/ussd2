@@ -35,11 +35,12 @@ def Greetings():
     text_input= request.values.get("text")
     text = ''.join(text_input.split())
 
-    if text == "":
+    if text == "":     
 
-        phone_number = request.values.get("phoneNumber","default")
-        variables.number = phone_number.split('+')[1] 
-        print(variables.number)
+        phone_number=""  
+        phone_number = request.values.get("phoneNumber","")
+        number = phone_number.split('+')[1] 
+        print(number)
 
         variables.now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = variables.now.hour +3
@@ -77,21 +78,21 @@ def Greetings():
     elif (text == "balance" or text == "Balance" ):
 
         mycursor = db.cursor()
-        mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
+        mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (number,))
         checkNumber = mycursor.fetchall()
         print (checkNumber)
-        print ((variables.number,))
+        print ((number,))
 
         if (variables.number,) in checkNumber:
             mycursor = db.cursor()
-            mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
+            mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (number,))
             name = mycursor.fetchone()
             namef = name[0]
             print(name)
             print(namef)
 
-            now = datetime.now()
-            date = now.strftime("%d/%m/%Y, %H:%M")
+            Time_zone = datetime.now()
+            date = Time_zone.strftime("%d/%m/%Y, %H:%M")
 
             variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
             ).format(namef,date)
