@@ -38,6 +38,7 @@ def Greetings():
     text= request.values.get("text")
 
     if text == "":
+        print(phone_number)
         variables.now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = variables.now.hour +3
 
@@ -71,7 +72,7 @@ def Greetings():
                     ).format(Good_Evening)
  
     elif text == "balance":
-        
+
         mycursor = db.cursor()
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (phone_number,))
         checkNumber = mycursor.fetchall()
