@@ -32,18 +32,14 @@ def Greetings():
     )
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
-
-    phone = request.values.get("phoneNumber")
-    
-    phone.replace(phone_number,phone)
-    
-    phone_number =""
-    
     text= request.values.get("text")
 
     if text == "":
+
+        phone_number = request.values.get("phoneNumber","default")
         variables.number = phone_number.split('+')[1] 
         print(variables.number)
+        
         variables.now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = variables.now.hour +3
 
