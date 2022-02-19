@@ -33,10 +33,12 @@ def Greetings():
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
 
-    phone_number =''
-    phone_number = request.values.get("phoneNumber")
+    phone = request.values.get("phoneNumber")
     
-    phone_number.replace(phone_number)
+    phone.replace(phone_number,phone)
+    
+    phone_number =""
+    
     text= request.values.get("text")
 
     if text == "":
