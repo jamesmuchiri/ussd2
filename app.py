@@ -86,8 +86,9 @@ def Greetings():
             print(name)
             print(namef)
 
+            now = datetime.now()
             format_data = "%d/%m/%y %H:%M"
-            date = datetime.strptime(variables.now, format_data)
+            date = datetime.strptime(now, format_data)
 
             variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
             ).format(namef,date)
