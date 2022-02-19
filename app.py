@@ -36,7 +36,7 @@ def Greetings():
     text = ''.join(text_input.split())
 
     if text == "":
-        
+
         phone_number = ""
         phone_number = request.values.get("phoneNumber","default")
         variables.number = phone_number.split('+')[1] 
@@ -78,9 +78,13 @@ def Greetings():
     elif (text == "balance" or text == "Balance" ):
 
         mycursor = db.cursor()
-        mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
+        mycursor.execute('''SELECT * FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
         checkNumber = mycursor.fetchall()
-        print (checkNumber)
+
+
+        for n in checkNumber:
+            print (n)
+            
         print ((variables.number,))
 
         if (variables.number,) in checkNumber:
