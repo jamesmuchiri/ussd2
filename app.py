@@ -77,28 +77,34 @@ def Greetings():
         mycursor = db.cursor()
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
         variables.checkNumber = mycursor.fetchall()
+        Balance()
+
+     
  
-    
-    elif (text == "balance" or text == "Balance" ):
+    def Balance():
+        if (text == "balance" or text == "Balance" ):
 
-        if (variables.number,) in variables.checkNumber:
-            mycursor = db.cursor()
-            mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
-            name = mycursor.fetchone()
-            namef = name[0]
-            print(name)
-            print(namef)
+            if (variables.number,) in variables.checkNumber:
+                mycursor = db.cursor()
+                mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
+                name = mycursor.fetchone()
+                namef = name[0]
+                print(name)
+                print(namef)
+                
+                
 
-            Time_zone = datetime.now()
-            date = Time_zone.strftime("%d/%m/%Y, %H:%M")
+                now = datetime.now()
+                Time_zone = variables.now.hour +3
+                date = Time_zone.strftime("%d/%m/%Y, %H:%M")
 
-            variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
-            ).format(namef,date)
-        
+                variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
+                ).format(namef,date)
+            
+            else:
+                variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
         else:
-            variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
-    else:
-        variables.response=("END Invalid input")   
+            variables.response=("END Invalid input")  
 
          
         
