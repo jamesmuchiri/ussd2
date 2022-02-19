@@ -71,8 +71,9 @@ def Greetings():
                                         "\n  -Loan"
                                         "\n  -Amount"
                     ).format(Good_Evening)
-                    
-        return variables.number
+        return variables.response       
+        
+        
     def Balance(text):
         
     
