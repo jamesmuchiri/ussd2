@@ -16,22 +16,21 @@ api_key = "0f54c06969af94baa76c50efbcc1daaecb9b75f254d3388c85edfd9d21ff7ad0"
 africastalking.initialize(username, api_key)
 
 sms = africastalking.SMS
-
 db = mysql.connector.connect(
     
-    host = "137.184.54.169",
-    user = "kaguius",
-    passwd = "U6xZfLn9A7Swc%P9",
-    database = "finabora",
-    autocommit = True,
-    port ="3306",
-)
+        host = "137.184.54.169",
+        user = "kaguius",
+        passwd = "U6xZfLn9A7Swc%P9",
+        database = "finabora",
+        autocommit = True,
+        port ="3306",
+    )
+    
 @app.route('/', methods=['POST', 'GET'])
-
 def Greetings():
     
 
-   
+    
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
     text_input= request.values.get("text")
@@ -44,6 +43,11 @@ def Greetings():
         variables.number = phone_number.split('+')[1] 
         print(variables.number)
 
+
+        mycursor = db.cursor()
+        mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
+        variables.checkNumber = mycursor.fetchall()
+        
         variables.now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = variables.now.hour +3
 
@@ -76,21 +80,10 @@ def Greetings():
                                         "\n  -Amount"
                     ).format(Good_Evening)
 
-        mycursor = db.cursor()
-        mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
-        variables.checkNumber = mycursor.fetchall()
-        Balance()
-    
-    return variables.response
-
-     
+        
  
-def Balance():
-
-    text_input= request.values.get("text")
-    text = ''.join(text_input.split())
-
-    if (text == "balance" or text == "Balance" ):
+    
+    elif (text == "balance" or text == "Balance" ):
 
         if (variables.number,) in variables.checkNumber:
             mycursor = db.cursor()
@@ -99,22 +92,19 @@ def Balance():
             namef = name[0]
             print(name)
             print(namef)
-                
-                
 
-            now = datetime.now()
-            Time_zone = now.hour +3
+            Time_zone = datetime.now()
             date = Time_zone.strftime("%d/%m/%Y, %H:%M")
 
             variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
             ).format(namef,date)
-            
-        else:
-                variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
         
-    
+        else:
+            variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
+    else:
+        variables.response=("END Invalid input")   
 
-    
+         
         
     return variables.response
     
