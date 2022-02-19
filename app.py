@@ -76,9 +76,11 @@ def Greetings():
         mycursor = db.cursor()
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
         checkNumber = mycursor.fetchone()
-        print (checkNumber)
+        checkNumberf = checkNumber[0]
 
-        if variables.number != checkNumber:
+        print (checkNumberf)
+
+        if variables.number != checkNumberf:
             variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
 
         else:
