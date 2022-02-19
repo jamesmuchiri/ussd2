@@ -82,13 +82,15 @@ def Greetings():
     else:
         variables.response=("END Invalid input")     
 
+    return variables.response
+
      
  
 def Balance():
 
     text_input= request.values.get("text")
     text = ''.join(text_input.split())
-    
+
     if (text == "balance" or text == "Balance" ):
 
         if (variables.number,) in variables.checkNumber:
