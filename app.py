@@ -79,11 +79,7 @@ def Greetings():
         print (checkNumber)
         print ((variables.number,))
 
-        if (variables.number,) != checkNumber:
-            variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
-            
-
-        else:
+        if (variables.number,) in checkNumber:
             mycursor = db.cursor()
             mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
             name = mycursor.fetchone()
@@ -96,7 +92,10 @@ def Greetings():
 
             variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
             ).format(namef,date)
-           
+        
+        else:
+            variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
+            
 
          
         
