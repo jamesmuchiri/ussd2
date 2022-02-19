@@ -1,3 +1,4 @@
 number =""
 response =""
 now =""
+checkNumber = ""
