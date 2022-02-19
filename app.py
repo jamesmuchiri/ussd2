@@ -6,6 +6,7 @@ import re
 import maya
 from maya import MayaInterval
 from datetime import datetime
+import datetime as dt
 from dateutil.parser import parse
 import mysql.connector
 
@@ -90,7 +91,7 @@ def Greetings():
             print(name)
             print(namef)
 
-            Time_zone = datetime.today(datetime.timezone.utc)
+            Time_zone = datetime.today(dt.timezone.utc)
             date = Time_zone.strftime("%d/%m/%Y, %H:%M")
 
             variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
