@@ -73,19 +73,13 @@ def Greetings():
                                         "\n  -Loan"
                                         "\n  -Amount"
                     ).format(Good_Evening)
+
+        mycursor = db.cursor()
+        mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
+        checkNumber = mycursor.fetchall()
  
     
     elif (text == "balance" or text == "Balance" ):
-
-        mycursor = db.cursor()
-        mycursor.execute('''SELECT * FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
-        checkNumber = mycursor.fetchall()
-
-
-        for n in checkNumber:
-            print (n)
-            
-        print ((variables.number,))
 
         if (variables.number,) in checkNumber:
             mycursor = db.cursor()
