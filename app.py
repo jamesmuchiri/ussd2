@@ -34,7 +34,7 @@ def Greetings():
     service_code = request.values.get("serviceCode", None)
     phone_number = request.values.get("phoneNumber")
     phone_number =[]
-    phone_number.append()
+    phone_number.append(phone_number)
     text= request.values.get("text")
 
     if text == "":
