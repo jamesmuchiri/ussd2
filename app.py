@@ -79,11 +79,12 @@ def Greetings():
         mycursor = db.cursor()
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
         variables.checkNumber = mycursor.fetchall()
+        Balance()
     else:
         variables.response=("END Invalid input")     
 
-    Balance()
     
+
     return variables.response
 
      
