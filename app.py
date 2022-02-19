@@ -76,12 +76,12 @@ def Greetings():
 
         mycursor = db.cursor()
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
-        checkNumber = mycursor.fetchall()
+        variables.checkNumber = mycursor.fetchall()
  
     
     elif (text == "balance" or text == "Balance" ):
 
-        if (variables.number,) in checkNumber:
+        if (variables.number,) in variables.checkNumber:
             mycursor = db.cursor()
             mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
             name = mycursor.fetchone()
