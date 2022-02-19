@@ -28,23 +28,16 @@ db = mysql.connector.connect(
     )
     
 @app.route('/', methods=['POST', 'GET'])
-def Greetings():
+def Greetings(text, phone_number):
+    phone_number = request.values.get("phoneNumber","default")
+    text = request.values.get("text","default")
+
+    variables.number = phone_number.split('+')[1] 
+    print(variables.number)
     
 
-    
-    session_id = request.values.get("sessionId", None)
-    service_code = request.values.get("serviceCode", None)
-    text_input= request.values.get("text")
-    text = ''.join(text_input.split())
-
-    if text == "":
-
-        phone_number = ""
-        phone_number = request.values.get("phoneNumber","default")
-        variables.number = phone_number.split('+')[1] 
-        print(variables.number)
-
-
+    if text == "":                          
+        
         mycursor = db.cursor()
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
         variables.checkNumber = mycursor.fetchall()
@@ -77,30 +70,31 @@ def Greetings():
                                         "\n  -Loan"
                                         "\n  -Amount"
                     ).format(Good_Evening)
-
-        
- 
     
-    elif (text == "balance" or text == "Balance" ):
+    def Balance(text):
+    
+        if (text == "balance" or text == "Balance" ):
 
-        if (variables.number,) in variables.checkNumber:
-            mycursor = db.cursor()
-            mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
-            name = mycursor.fetchone()
-            namef = name[0]
-            print(name)
-            print(namef)
+            if (variables.number,) in variables.checkNumber:
+                mycursor = db.cursor()
+                mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
+                name = mycursor.fetchone()
+                namef = name[0]
+                print(name)
+                print(namef)
 
-            Time_zone = dt.datetime.now(dt.timezone.utc)
-            date = Time_zone.strftime("%d/%m/%Y, %H:%M")
+                Time_zone = dt.datetime.now(dt.timezone.utc)
+                date = Time_zone.strftime("%d/%m/%Y, %H:%M")
 
-            variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
-            ).format(namef,date)
-        
+                variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
+                ).format(namef,date)
+            
+            else:
+                variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
         else:
-            variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
-    else:
-        variables.response=("END Invalid input")   
+            variables.response=("END Invalid input")   
+        
+        return Balance(text=text)
 
          
         
