@@ -86,12 +86,13 @@ def Greetings():
             name = mycursor.fetchone()
             namef = name[0]
             print(name)
-            
-
             print(namef)
-
             variables.response=("END Dear {}, your effective balance as at $date is KES $loan_balance."
             ).format(namef)
+
+        else:
+            variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
+
          
         
     return variables.response
