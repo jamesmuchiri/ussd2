@@ -7,6 +7,7 @@ import maya
 from maya import MayaInterval
 from datetime import datetime
 from dateutil.parser import parse
+import mysql.connector
 
 app = Flask(__name__)
 
@@ -16,14 +17,19 @@ africastalking.initialize(username, api_key)
 
 sms = africastalking.SMS
 
-
-
 @app.route('/', methods=['POST', 'GET'])
-
-
-
-
 def Greetings():
+    
+
+    db = mysql.connector.connect(
+    
+        host = "137.184.54.169",
+        user = "kaguius",
+        passwd = "U6xZfLn9A7Swc%P9",
+        database = "finabora",
+        autocommit = True,
+        port ="3306",
+    )
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
     phone_number = request.values.get("phoneNumber", None)
@@ -63,13 +69,23 @@ def Greetings():
                                         "\n  -Loan"
                                         "\n  -Amount"
                     ).format(Good_Evening)
-    Balance(text)
-    return variables.response
+ 
+    elif text == "balance":
+        
+        mycursor = db.cursor()
+        mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (phone_number,))
+        checkNumber = mycursor.fetchall()
 
-def Balance(text):
-    if text == "balance":
-        variables.response=("END Dear $first_name, your effective balance as at {} is KES $loan_balance."
-        ).format(variables.now)
+        
+
+        if (phone_number,) in checkNumber:
+
+            mycursor = db.cursor()
+            mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (phone_number,))
+            name = mycursor.fetchone()
+
+            variables.response=("END Dear {}, your effective balance as at $date is KES $loan_balance."
+            ).format(name)
         
         
     return variables.response
