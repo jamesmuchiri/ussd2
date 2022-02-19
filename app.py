@@ -33,15 +33,14 @@ def Greetings():
     session_id = request.values.get("sessionId", None)
     service_code = request.values.get("serviceCode", None)
     phone_number = request.values.get("phoneNumber")
-    
-    number =replace(phone_number.split('+')[1])
-    print(number)
-
     text= request.values.get("text")
+
+    variables.number = phone_number.split('+')[1] 
+    print(variables.number)
+        
 
     if text == "":
         
-
         variables.now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = variables.now.hour +3
 
@@ -78,18 +77,18 @@ def Greetings():
     elif (text == "balance" or text == "Balance" ):
 
         mycursor = db.cursor()
-        mycursor.execute('''SELECT primary_phone FROM s_users_primary WHERE primary_phone = (%s)''', (number,))
+        mycursor.execute('''SELECT primary_phone FROM s_users_primary WHERE primary_phone = (%s)''', (variables.number,))
         checkNumber = mycursor.fetchone()
         checkNumberf = checkNumber[0]
 
         print (checkNumberf)
 
-        if number != checkNumberf:
+        if variables.number != checkNumberf:
             variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
 
         else:
             mycursor = db.cursor()
-            mycursor.execute('''SELECT first_name FROM s_users_primary WHERE primary_phone = (%s)''', (number,))
+            mycursor.execute('''SELECT first_name FROM s_users_primary WHERE primary_phone = (%s)''', (variables.number,))
             name = mycursor.fetchone()
             namef = name[0]
             print(name)
