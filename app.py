@@ -1,4 +1,3 @@
-from dataclasses import replace
 from flask import Flask, request
 import africastalking
 import os
@@ -79,18 +78,18 @@ def Greetings():
     elif (text == "balance" or text == "Balance" ):
 
         mycursor = db.cursor()
-        mycursor.execute('''SELECT primary_phone FROM s_users_primary WHERE primary_phone = (%s)''', (variables.number,))
+        mycursor.execute('''SELECT primary_phone FROM s_users_primary WHERE primary_phone = (%s)''', (number,))
         checkNumber = mycursor.fetchone()
         checkNumberf = checkNumber[0]
 
         print (checkNumberf)
 
-        if variables.number != checkNumberf:
+        if number != checkNumberf:
             variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
 
         else:
             mycursor = db.cursor()
-            mycursor.execute('''SELECT first_name FROM s_users_primary WHERE primary_phone = (%s)''', (variables.number,))
+            mycursor.execute('''SELECT first_name FROM s_users_primary WHERE primary_phone = (%s)''', (number,))
             name = mycursor.fetchone()
             namef = name[0]
             print(name)
