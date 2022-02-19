@@ -79,11 +79,13 @@ def Greetings():
 
         
 
-        if (phone_number,) in checkNumber:
+        if (variables.number,) in checkNumber:
 
             mycursor = db.cursor()
             mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
             name = mycursor.fetchone()
+
+            print(name)
 
             variables.response=("END Dear {}, your effective balance as at $date is KES $loan_balance."
             ).format(name)
