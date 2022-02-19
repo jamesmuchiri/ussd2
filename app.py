@@ -82,6 +82,8 @@ def Greetings():
     else:
         variables.response=("END Invalid input")     
 
+    Balance()
+    
     return variables.response
 
      
