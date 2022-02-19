@@ -77,7 +77,8 @@ def Greetings():
         mycursor = db.cursor()
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
         variables.checkNumber = mycursor.fetchall()
-        Balance()
+    else:
+        variables.response=("END Invalid input")     
 
      
  
@@ -103,10 +104,11 @@ def Greetings():
             
             else:
                 variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
+        
         else:
             variables.response=("END Invalid input")  
 
-         
+        return Balance
         
     return variables.response
     
