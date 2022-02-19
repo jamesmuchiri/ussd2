@@ -47,14 +47,13 @@ def Greetings():
         mycursor = db.cursor()
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
         variables.checkNumber = mycursor.fetchall()
-        
+
         variables.now = maya.MayaDT.from_datetime(datetime.utcnow())
         Time_zone = variables.now.hour +3
 
         if 5<= Time_zone <12 :
             Good_Morning="Good Morning"
-            variables.response =("CON {}"
-                                        "\nHow may i help you"
+            variables.response =("CON {} How may i help you"
                                         "\n  -Limit "
                                         "\n  -Balance"
                                         "\n  -Loan"
@@ -63,8 +62,7 @@ def Greetings():
 
         elif  12 <= Time_zone < 17 :
             Good_Afternoon="Good Afternoon"
-            variables.response =("CON {}"
-                                        "\nHow may i help you"
+            variables.response =("CON {} How may i help you"
                                         "\n  -Limit "
                                         "\n  -Balance"
                                         "\n  -Loan"
@@ -72,8 +70,7 @@ def Greetings():
                     ).format(Good_Afternoon)
         else:
             Good_Evening="Good Evening"
-            variables.response =("CON {}"
-                                        "\nHow may i help you"
+            variables.response =("CON {} How may i help you"
                                         "\n  -Limit "
                                         "\n  -Balance"
                                         "\n  -Loan"
@@ -93,7 +90,8 @@ def Greetings():
             print(name)
             print(namef)
 
-            Time_zone = datetime.now()
+            now = datetime.now()
+            Time_zone = now.hour +3
             date = Time_zone.strftime("%d/%m/%Y, %H:%M")
 
             variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
