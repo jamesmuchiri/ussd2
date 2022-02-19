@@ -77,7 +77,7 @@ def Greetings():
         mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
         checkNumber = mycursor.fetchall()
 
-        if (variables.number,) in checkNumber:
+        if (variables.number,) == checkNumber:
 
             mycursor = db.cursor()
             mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
