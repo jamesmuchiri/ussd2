@@ -1,4 +1,4 @@
 number =""
 response =""
 now =""
-checkNumber = ""
+checkNumber =[]
