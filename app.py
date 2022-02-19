@@ -71,10 +71,11 @@ def Greetings():
                                         "\n  -Loan"
                                         "\n  -Amount"
                     ).format(Good_Evening)
-    Balance(text)         
+
     return variables.response
+    
         
-        
+       
 def Balance(text):
         
     
@@ -99,9 +100,10 @@ def Balance(text):
                 return variables.response
     else:
         variables.response=("END Invalid input")   
-        return variables.response
+    
+    return variables.response
         
-    return Balance(text)
+    
 
          
         
