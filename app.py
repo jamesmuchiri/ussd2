@@ -95,7 +95,7 @@ def Greetings():
                 
 
                 now = datetime.now()
-                Time_zone = variables.now.hour +3
+                Time_zone = now.hour +3
                 date = Time_zone.strftime("%d/%m/%Y, %H:%M")
 
                 variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
