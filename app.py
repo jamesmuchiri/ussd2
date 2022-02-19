@@ -85,7 +85,7 @@ def Greetings():
             namef = name[0]
             print(name)
             print(namef)
-            variables.response=("END Dear {}, your effective balance as at $date is KES $loan_balance."
+            variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
             ).format(namef,variables.now)
 
         else:
