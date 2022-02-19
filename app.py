@@ -84,7 +84,7 @@ def Greetings():
             mycursor = db.cursor()
             mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
             name = mycursor.fetchone()
-            namef = name.lstrip("('").rstrip("',)")
+            namef = name[2:3]
 
             print(namef)
 
