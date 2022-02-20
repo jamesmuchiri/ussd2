@@ -1,7 +1,7 @@
+from typing_extensions import Self
 from flask import Flask, request
 import africastalking
 import os
-import variables
 import re
 import maya
 from maya import MayaInterval
@@ -9,7 +9,7 @@ from datetime import datetime
 import datetime as dt
 from dateutil.parser import parse
 import mysql.connector
-
+from .menu import Menu
 app = Flask(__name__)
 
 username = "sandbox"
@@ -28,93 +28,19 @@ db = mysql.connector.connect(
     )
     
 @app.route('/', methods=['POST', 'GET'])
-def Greetings(text):
-    phone_number = request.values.get("phoneNumber","default")
-    text = request.values.get("text","default")
 
-    
-    
-
-    if text == "":                          
-        variables.number = phone_number.split('+')[1] 
-        print(variables.number)
-
-        mycursor = db.cursor()
-        mycursor.execute('''SELECT primary_phone FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
-        variables.checkNumber = mycursor.fetchall()
-
-        variables.now = maya.MayaDT.from_datetime(datetime.utcnow())
-        Time_zone = variables.now.hour +3
-
-        if 5<= Time_zone <12 :
-            Good_Morning="Good Morning"
-            variables.response =("CON {} How may i help you"
-                                        "\n  -Limit "
-                                        "\n  -Balance"
-                                        "\n  -Loan"
-                                        "\n  -Amount"
-            ).format(Good_Morning)
-
-        elif  12 <= Time_zone < 17 :
-            Good_Afternoon="Good Afternoon"
-            variables.response =("CON {} How may i help you"
-                                        "\n  -Limit "
-                                        "\n  -Balance"
-                                        "\n  -Loan"
-                                        "\n  -Amount"
-                    ).format(Good_Afternoon)
-        else:
-            Good_Evening="Good Evening"
-            variables.response =("CON {} How may i help you"
-                                        "\n  -Limit "
-                                        "\n  -Balance"
-                                        "\n  -Loan"
-                                        "\n  -Amount"
-                    ).format(Good_Evening)
-
-   
-    
+class Airtime(Menu):
+    def Callback(self):
+        phone_number = request.values.get("phoneNumber","default")
+        text = request.values.get("text","default")
+        text_array = text.split("*")
+        user_response = text_array[len(text_array) - 1]
         
-       
-    def Balance(text):
-        if (text == "balance" or text == "Balance" ):
-
-            if (variables.number,) in variables.checkNumber:
-                    mycursor = db.cursor()
-                    mycursor.execute('''SELECT first_name FROM s_staff WHERE primary_phone = (%s)''', (variables.number,))
-                    name = mycursor.fetchone()
-                    namef = name[0]
-                    print(name)
-                    print(namef)
-
-                    Time_zone = dt.datetime.now(dt.timezone.utc)
-                    date = Time_zone.strftime("%d/%m/%Y, %H:%M")
-
-                    variables.response=("END Dear {}, your effective balance as at {} is KES $loan_balance."
-                    ).format(namef,date)
-                
-            else:
-                    variables.response=("END Dear customer, we do not seem to have your details on file. Please visit the office to get registered.")
-                    return variables.response
-        else:
-            variables.response=("END Invalid input")  
-
-        return Balance 
         
-    return variables.response
-        
-    
 
-         
-        
-    
-    
+        if user_response == "":     
+            return self.home()
 
-
-    
-
-
-    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=os.environ.get("PORT"))
