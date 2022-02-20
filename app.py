@@ -1,4 +1,3 @@
-from typing_extensions import Self
 from flask import Flask, request
 import africastalking
 import os
