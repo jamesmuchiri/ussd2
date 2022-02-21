@@ -38,7 +38,7 @@ def Callback():
         
         
 
-    if user_response == "":  
+    if text == "":  
         
         if 5<= kenya_time <12 :
             Good_Morning="Good Morning"
