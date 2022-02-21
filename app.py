@@ -1,7 +1,9 @@
 from flask import Flask, request
 import africastalking
 import os
-import datetime
+from datetime import datetime
+import maya
+from maya import MayaInterval
 from dateutil.parser import parse
 import mysql.connector
 from flask import make_response
@@ -25,7 +27,10 @@ def ussd_callback():
     text = request.values.get("text", "default")
     sms_phone_number = []
     sms_phone_number.append(phone_number)
-    kenya_time = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
+
+    now = maya.MayaDT.from_datetime(datetime.utcnow())
+    kenya_time = now.hour +3
+    
 
     #ussd logic
     
