@@ -1,4 +1,3 @@
-from ast import Return
 from flask import Flask, request
 import africastalking
 import os
@@ -9,7 +8,6 @@ from datetime import datetime
 import datetime as dt
 from dateutil.parser import parse
 import mysql.connector
-from menu import Menu
 from flask import make_response
 app = Flask(__name__)
 
