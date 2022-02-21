@@ -1,11 +1,7 @@
 from flask import Flask, request
 import africastalking
 import os
-import re
-import maya
-from maya import MayaInterval
 from datetime import datetime
-import datetime as dt
 from dateutil.parser import parse
 import mysql.connector
 from flask import make_response
@@ -61,7 +57,8 @@ def Callback():
                         "\n  -Loan"
                         "\n  -Amount"
                     ).format(Good_Evening)
-    return menu_text
+        
+        return menu_text
 
     
       
