@@ -1,3 +1,4 @@
+from ast import Return
 from flask import Flask, request
 import africastalking
 import os
@@ -8,6 +9,7 @@ from datetime import datetime
 import datetime as dt
 from dateutil.parser import parse
 import mysql.connector
+from menu import Menu
 from flask import make_response
 app = Flask(__name__)
 
@@ -23,6 +25,8 @@ sms = africastalking.SMS
 
 
 def Callback():
+    global menu_text 
+     
     phone_number = request.values.get("phoneNumber","default")
     text = request.values.get("text","default")
     text_array = text.split("*")
